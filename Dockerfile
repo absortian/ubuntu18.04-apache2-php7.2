@@ -3,7 +3,7 @@ FROM ubuntu:18.04
 # Indicamos que la terminal debe ser no interactiva
 ENV DEBIAN_FRONTEND=noninteractive
 # Actualizamos repos e instalamos software que necesitamos
-RUN apt update && apt install -yq --no-install-recommends fontconfig xfonts-base libssl-dev xfonts-75dpi apache2 php7.2 php7.2-mysql php7.2-dom php7.2-curl php7.2-zip curl ca-certificates xz-utils libfontconfig1 libxrender1 libxext6 wget
+RUN apt update && apt install -yq --no-install-recommends fontconfig xfonts-base libssl-dev xfonts-75dpi apache2 php7.2 php7.2-mysql php7.2-dom php7.2-curl php7.2-zip php7.2-mbstring curl ca-certificates xz-utils libfontconfig1 libxrender1 libxext6 wget
 # Activo modulos de apache2
 RUN a2enmod ssl rewrite php7.2
 # Instalo composer
