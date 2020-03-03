@@ -1,0 +1,21 @@
+version: '2'
+services:
+  apache-php:
+    image: absortian/absortian:ubuntu18.04-apache2-php7.2
+    volumes:
+      - "/home/absortian/Docker/Shared/www:/var/www"
+      - "/home/absortian/Docker/Shared/sites-enabled:/etc/apache2/sites-enabled"
+    restart: always
+    ports:
+      - 80:80
+    links:
+      - mysql:mysql
+  mysql:
+    image: mysql:5.7.28
+    volumes:
+      - "/home/absortian/Docker/Shared/mysql:/var/lib/mysql"
+    restart: always
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: root
