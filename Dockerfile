@@ -18,5 +18,8 @@ RUN dpkg -i libc6_2.28-10_amd64.deb
 RUN dpkg -i wkhtmltox_0.12.5-1.buster_amd64.deb
 # Añado en el sistema el fichero de configuraciónes extra de php.ini
 COPY ./extra-conf.ini /etc/php/7.2/apache2/conf.d/extra-conf.ini
+# Cambiamos la zona horaria
+ENV TZ=Europe/Madrid
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 # Fuerzo que ejecute un comando que se quede leyendo información indefinidamente, si el comando parase, la imagen también
 CMD service apache2 start && tail -F /var/log/apache2/error.log
