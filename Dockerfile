@@ -9,12 +9,12 @@ RUN a2enmod ssl rewrite php7.2
 # Instalo composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 # Descarga de software que no está en los repos de la imagen
-RUN wget http://ftp.br.debian.org/debian/pool/main/libj/libjpeg-turbo/libjpeg62-turbo_1.5.2-2+b1_amd64.deb
-RUN wget http://ftp.br.debian.org/debian/pool/main/g/glibc/libc6_2.28-10_amd64.deb
+RUN wget http://ftp.br.debian.org/debian/pool/main/libj/libjpeg-turbo/libjpeg62-turbo_1.5.2-2+deb10u1_amd64.deb
+RUN wget http://ftp.br.debian.org/debian/pool/main/g/glibc/libc6_2.28-10+deb10u1_amd64.deb
 RUN wget https://github.com/wkhtmltopdf/wkhtmltopdf/releases/download/0.12.5/wkhtmltox_0.12.5-1.buster_amd64.deb
 # Instalo paquetes anteriormente descargados en orden de dependencias
-RUN dpkg -i libjpeg62-turbo_1.5.2-2+b1_amd64.deb
-RUN dpkg -i libc6_2.28-10_amd64.deb
+RUN dpkg -i libjpeg62-turbo_1.5.2-2+deb10u1_amd64.deb
+RUN dpkg -i libc6_2.28-10+deb10u1_amd64.deb
 RUN dpkg -i wkhtmltox_0.12.5-1.buster_amd64.deb
 # Añado en el sistema el fichero de configuraciónes extra de php.ini
 COPY ./extra-conf.ini /etc/php/7.2/apache2/conf.d/extra-conf.ini
