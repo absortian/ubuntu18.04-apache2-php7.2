@@ -8,11 +8,13 @@ def notifyEndOfBuild() {
         colorName = 'GREEN'
         colorCode = '#00FF00'
     }
+    // Send to default recipients
     emailext (
         subject: "${buildStatus}: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
         body: """<p>RESULT: ${buildStatus}</p>
                  <p>Check console output at <a href='${env.BUILD_URL}'>${env.JOB_NAME} [${env.BUILD_NUMBER}]</a></p>""",
-        recipientProviders: [[$class: 'DevelopersRecipientProvider']]
+        recipientProviders: [[$class: 'DevelopersRecipientProvider']],
+        to: '$DEFAULT_RECIPIENTS'
     )
 }
 
