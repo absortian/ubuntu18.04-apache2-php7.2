@@ -37,10 +37,10 @@ pipeline {
                 }
             }
         }
-        stage('Notify') {
-            steps {
-                notifyEndOfBuild()
-            }
+    }
+    post {
+        always {
+            notifyEndOfBuild()
         }
     }
 }
