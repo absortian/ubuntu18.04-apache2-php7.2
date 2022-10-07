@@ -11,8 +11,7 @@ pipeline {
             steps {
                 withCredentials([usernamePassword(credentialsId: 'dockerhub', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
                     sh 'docker login -u $USERNAME -p $PASSWORD'
-                    sh 'docker tag myimage $USERNAME/myimage'
-                    sh 'docker push $USERNAME/myimage'
+                    sh 'docker push $USERNAME/absortian:ubuntu18.04-apache2-php7.2'
                 }
             }
         }
