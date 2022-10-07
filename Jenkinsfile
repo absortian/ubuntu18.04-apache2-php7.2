@@ -1,4 +1,23 @@
 // Jenkinsfile that builds the docker image and pushes it to the registry
+
+def notifyEndOfBuild() {
+    def buildStatus = currentBuild.currentResult
+    def colorName = 'RED'
+    def colorCode = '#FF0000'
+    if (buildStatus == 'SUCCESS') {
+        colorName = 'GREEN'
+        colorCode = '#00FF00'
+    }
+    emailext (
+        subject: "${buildStatus}: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
+        body: """<p>STARTED: ${currentBuild.startTime}</p>
+                 <p>FINISHED: ${currentBuild.getTimestamp()}</p>
+                 <p>RESULT: ${buildStatus}</p>
+                 <p>Check console output at <a href='${env.BUILD_URL}'>${env.JOB_NAME} [${env.BUILD_NUMBER}]</a></p>""",
+        recipientProviders: [[$class: 'DevelopersRecipientProvider']]
+    )
+}
+
 pipeline {
     agent any
     stages {
