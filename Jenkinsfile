@@ -34,5 +34,10 @@ pipeline {
                 }
             }
         }
+        stage('Notify') {
+            steps {
+                notifyEndOfBuild()
+            }
+        }
     }
 }
