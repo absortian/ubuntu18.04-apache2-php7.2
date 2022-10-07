@@ -20,6 +20,7 @@ def notifyEndOfBuild() {
     )
 }
 
+// Def pipeline
 pipeline {
     agent any
     stages {
