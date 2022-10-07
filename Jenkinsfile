@@ -1,5 +1,6 @@
 // Jenkinsfile that builds the docker image and pushes it to the registry
 
+// Def function to notify
 def notifyEndOfBuild() {
     def buildStatus = currentBuild.currentResult
     def colorName = 'RED'
